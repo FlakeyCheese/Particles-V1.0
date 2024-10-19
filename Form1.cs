@@ -15,7 +15,7 @@ namespace Particles_V1._0
         
     {
         
-        Particle[] p =new Particle[100];
+        Particle[] p =new Particle[100];//create an array of particles
         
         public Form1()
         {
@@ -23,22 +23,21 @@ namespace Particles_V1._0
             
             for (int i = 0; i < p.Length; i++)
             {
-                Random rand = new Random(Guid.NewGuid().GetHashCode());
-                Random rnd = new Random(Guid.NewGuid().GetHashCode());
-                float vX = (rand.Next(5000))-2500;
+                Random rand = new Random(Guid.NewGuid().GetHashCode());//a very random seed
+                Random rnd = new Random(Guid.NewGuid().GetHashCode());//another one
+                float vX = (rand.Next(5000))-2500;//get 2 random values between -2500 and 2500
                 float vY = (rnd.Next(5000) )-2500;
+                //create a new particle. Vector values from vX and vY divided by 100 to create 2 floats
                 p[i] = new Particle(this.Width/2, this.Height/2,vX/100, vY/100);
             }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
-
-            for (int i = 0; i < p.Length; i++)
-            {
-                Pen pen = new Pen(Color.FromArgb(255, 255, 0, 0), 1);
-                g.DrawEllipse(pen, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
+            
+            for (int i = 0; i < p.Length; i++)//iterate through the particle array and draw each one
+            {                
+                e.Graphics.DrawEllipse(Pens.Red, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
             }  
         }
 
@@ -47,12 +46,11 @@ namespace Particles_V1._0
             // Update the particle position based on the vector
             for (int i = 0; i < p.Length; i++)
             {
-                p[i].particlePosition.X += p[i].vector.X;
-                p[i].particlePosition.Y += p[i].vector.Y;
+                p[i].update();//call the particle method to update its position
             }
 
             
-            Invalidate();
+            Invalidate();//refresh the form, re-draw it.
         }
     }
 }
