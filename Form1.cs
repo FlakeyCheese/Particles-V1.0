@@ -34,8 +34,12 @@ namespace Particles_V1._0
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            for (int i = 0;i<p.Length;i++)
-            g.DrawEllipse(Pens.Red, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
+
+            for (int i = 0; i < p.Length; i++)
+            {
+                Pen pen = new Pen(Color.FromArgb(255, 255, 0, 0), 1);
+                g.DrawEllipse(pen, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
+            }  
         }
 
         private void timer1_Tick(object sender, EventArgs e)
