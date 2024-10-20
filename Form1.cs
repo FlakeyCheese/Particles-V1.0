@@ -19,8 +19,13 @@ namespace Particles_V1._0
         
         public Form1()
         {
+            this.DoubleBuffered = true;//smooths the animation
             InitializeComponent();
+            Initialise();//call initialise( ) to randomise the particle vectors.
             
+        }
+        public void Initialise()
+        {
             for (int i = 0; i < p.Length; i++)
             {
                 Random rand = new Random(Guid.NewGuid().GetHashCode());//a very random seed
@@ -37,7 +42,7 @@ namespace Particles_V1._0
             
             for (int i = 0; i < p.Length; i++)//iterate through the particle array and draw each one
             {                
-                e.Graphics.DrawEllipse(Pens.Red, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
+                e.Graphics.DrawEllipse(Pens.Crimson, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
             }  
         }
 
@@ -47,15 +52,19 @@ namespace Particles_V1._0
             for (int i = 0; i < p.Length; i++)
             {
                 p[i].update();//call the particle method to update its position
-            }
-
-            
+            }                       
             Invalidate();//refresh the form, re-draw it.
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Initialise();
+            timer1.Enabled=false;   
         }
     }
 }
