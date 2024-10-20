@@ -43,7 +43,7 @@ namespace Particles_V1._0
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // Update the particle position based on the vector
+            
             for (int i = 0; i < p.Length; i++)
             {
                 p[i].update();//call the particle method to update its position
@@ -51,6 +51,11 @@ namespace Particles_V1._0
 
             
             Invalidate();//refresh the form, re-draw it.
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
         }
     }
 }
