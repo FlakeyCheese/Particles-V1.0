@@ -11,9 +11,10 @@ namespace Particles_V1._0
 {
     internal class Particle
     {
+        public int time_to_death =50;//number of steps to death
         public Vector2 particlePosition;//particles position
         public  Vector2 vector;     //vector representing direction and speed
-        public Vector2 environment =new Vector2(0f, 2f);//a vector that can be used for wind or gravity
+        public Vector2 environment =new Vector2(0f, 0f);//a vector that can be used for wind or gravity
                 
         public Particle(int pointX, int pointY,float vectorX,float vectorY)//constructor
         {            
@@ -24,6 +25,7 @@ namespace Particles_V1._0
         { 
             particlePosition = Vector2.Add(particlePosition, vector);//update position
             vector = Vector2.Add(vector, environment);//update vector
+            time_to_death--;    
 
         }
     }
