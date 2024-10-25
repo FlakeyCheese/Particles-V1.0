@@ -15,60 +15,63 @@ namespace Particles_V1._0
         
     {
         
-        Particle[] p =new Particle[50];//create an array of particles
-        
+        List<Explosion> Explosions= new List<Explosion>();
+        int curX = 0;
+        int curY = 0;
         public Form1()
         {
             this.DoubleBuffered = true;//smooths the animation
             InitializeComponent();
-            Initialise();//call initialise( ) to randomise the particle vectors.
+            
             
         }
-        public void Initialise()
-        {
-            for (int i = 0; i < p.Length; i++)
-            {
-                Random rand = new Random(Guid.NewGuid().GetHashCode());//a very random seed
-                var (x,y) = RandomCirclePoint.GenerateRandomPoint(5,rand);
-
-                //create a new particle. Vector values from vX and vY divided by 100 to create 2 floats
-                p[i] = new Particle(this.Width/2, this.Height/2,x, y);
-            }
-        }
+        
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            //SolidBrush brush = new SolidBrush(Color.FromArgb(255,255,0,0)); 
             
-            for (int i = 0; i < p.Length; i++)//iterate through the particle array and draw each one
-            {if (p[i].time_to_death > 5)
-                {
-                    SolidBrush brush = new SolidBrush(Color.FromArgb(p[i].time_to_death * 5, 255, 0, 0));
-                    e.Graphics.FillEllipse(brush, p[i].particlePosition.X, p[i].particlePosition.Y, 5, 5);
-                    brush.Dispose();
-                }
-            }  
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
             
-            for (int i = 0; i < p.Length; i++)
+            bool isNullOrEmpty = Explosions?.Any() != true;
+            if (isNullOrEmpty) { return; }
+            else
             {
-                p[i].update();//call the particle method to update its position
-            }                       
-            Invalidate();//refresh the form, re-draw it.
+                
+                foreach (Explosion s in Explosions)
+                {
+                    
+                    for (int i = 0; i < s.p.Length; i++)//iterate through the particle array and draw each one
+                    {
+                        if (s.p[i].time_to_death > 5)
+                        {
+                            SolidBrush brush = new SolidBrush(Color.FromArgb(s.p[i].time_to_death * 5, s.r, s.g,s.b));
+                            e.Graphics.FillEllipse(brush, s.p[i].particlePosition.X, s.p[i].particlePosition.Y, 5, 5);
+                            brush.Dispose();
+                        }
+                    }
+                }
+            }
+            
+             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
+            Explosion explosion = new Explosion(curX, curY);
+            Explosions.Add(explosion);
+                   
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            Initialise();
-            timer1.Enabled=false;   
+           Point cursorPosition = this.PointToClient(Cursor.Position);
+
+            curX = cursorPosition.X;    
+            curY = cursorPosition.Y;  
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }
