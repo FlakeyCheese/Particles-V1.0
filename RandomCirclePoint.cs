@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Particles_V1._0
 {
-    internal class RandomCirclePoint
+    internal class RandomCirclePoint //a helper class to generates a random point in a circle about the origin
+        //this will be used as the x and y values in the vector of the particle
     {
          public static (float X, float Y) GenerateRandomPoint(double radius, Random random)
     {
