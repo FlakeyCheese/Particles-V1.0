@@ -7,29 +7,33 @@ using System.Threading;
 
 namespace Particles_V1._0
 {
-    internal class Explosion
+    public class Explosion
     {
-        public Particle[] p = new Particle[50];//create an array of particles
+        public Particle[] p = new Particle[50];//create an array of particles, you can increase this to 1000 or more but it gets cluttered
         private Timer _timer;
         Random rnd = new Random();
         public int r,g,b;
-        public Explosion(int startX, int startY)
+        private readonly Form1 _form1;
+        public Explosion(int startX, int startY, Form1 form1)
         {
+            _form1 = form1;
              r = rnd.Next(0, 255);
              g = rnd.Next(0, 255);
-             b = rnd.Next(0, 255);
+             b = rnd.Next(0, 255);//random colour values. You could set these to fixed values if you wanted your explosions all the same
 
             for (int i = 0; i < p.Length; i++)
             {
                 Random rand = new Random(Guid.NewGuid().GetHashCode());//a very random seed
                 // now get a random point from the helper class
-                var (x, y) = RandomCirclePoint.GenerateRandomPoint(5, rand);
+                var (x, y) = RandomCirclePoint.GenerateRandomPoint(5, rand);//expand the radius from 5 if you want a wider distribution of points.
+                                                                            //not sure what the resultof this would be
 
                 //create a new particle. 
                 p[i] = new Particle(startX, startY, x, y);
             }
             _timer = new Timer(OnTimerTick,null,0,100);//create a new timer.
              //This needs to be after we create the particles because the timer references the particles
+             // you can speed the animation up by reducing this
             
         }
         private void OnTimerTick(object o)
@@ -37,6 +41,11 @@ namespace Particles_V1._0
             for (int i = 0; i < p.Length; i++)
             {
                 p[i].update();//call the particle method to update its position
+                //kill the explosion from the list if the particles have died.
+                if (p[i].time_to_death < 0)
+                {
+                    _form1.Explosions.Remove(this);                 
+                }
             }
             //redraw the active form (used this because it may try to draw on Form1 after it has closed)
             //still crashes here on exit on occassion

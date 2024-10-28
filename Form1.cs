@@ -15,7 +15,7 @@ namespace Particles_V1._0
         
     {
         
-        List<Explosion> Explosions= new List<Explosion>();//a list to hold all the explosions
+        public List<Explosion> Explosions= new List<Explosion>();//a list to hold all the explosions
         int curX = 0;//somewhere to store the current location of the pointer
         int curY = 0;
         public Form1()
@@ -32,7 +32,7 @@ namespace Particles_V1._0
             
             
             bool isNullOrEmpty = Explosions?.Any() != true;//the list may be empty best to check
-            if (isNullOrEmpty) { return; }
+            if (isNullOrEmpty) { return; }//a little backwards but it works
             else
             {
                 
@@ -57,8 +57,9 @@ namespace Particles_V1._0
 
         private void Form1_Click(object sender, EventArgs e)
         { //when the mouse is clicked create a new explosion at the current location
-            Explosion explosion = new Explosion(curX, curY);
+            Explosion explosion = new Explosion(curX, curY, this);
             Explosions.Add(explosion);
+            
                    
         }
 
@@ -70,6 +71,14 @@ namespace Particles_V1._0
             curY = cursorPosition.Y;  
         }
 
-        
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+label1.Text = Explosions.Count.ToString();
+        }
     }
 }
