@@ -73,12 +73,18 @@ namespace Particles_V1._0
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            Application.Exit();//still crashing...doh!
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-label1.Text = Explosions.Count.ToString();
+        {int parts = 0;
+            if (Explosions.Count > 0)
+            {
+              parts = Explosions[0].p.Length;
+            }
+            else { parts = 0; }
+            label1.Text = Explosions.Count.ToString();
+            label4.Text =(Explosions.Count*parts).ToString();
         }
     }
 }

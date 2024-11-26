@@ -9,7 +9,7 @@ namespace Particles_V1._0
 {
     public class Explosion
     {
-        public Particle[] p = new Particle[50];//create an array of particles, you can increase this to 1000 or more but it gets cluttered
+        public Particle[] p = new Particle[57];//create an array of particles, you can increase this to 1000 or more but it gets cluttered and may crash if it has too many ponts to plot
         private Timer _timer;
         Random rnd = new Random();
         public int r,g,b;
@@ -26,12 +26,12 @@ namespace Particles_V1._0
                 Random rand = new Random(Guid.NewGuid().GetHashCode());//a very random seed
                 // now get a random point from the helper class
                 var (x, y) = RandomCirclePoint.GenerateRandomPoint(5, rand);//expand the radius from 5 if you want a wider distribution of points.
-                                                                            //not sure what the resultof this would be
+                                                                            //this makes the explosion more dynamic
 
                 //create a new particle. 
                 p[i] = new Particle(startX, startY, x, y);
             }
-            _timer = new Timer(OnTimerTick,null,0,100);//create a new timer.
+            _timer = new Timer(OnTimerTick,null,0,50);//create a new timer.
              //This needs to be after we create the particles because the timer references the particles
              // you can speed the animation up by reducing this
             
