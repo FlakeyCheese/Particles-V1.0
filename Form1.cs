@@ -73,7 +73,7 @@ namespace Particles_V1._0
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();//still crashing...doh!
+            //no need to check form closed now. Added a start up form it reverts to when the main form is closed
         }
 
         private void timer1_Tick(object sender, EventArgs e)
