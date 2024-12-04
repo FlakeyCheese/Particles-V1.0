@@ -27,5 +27,10 @@ namespace Particles_V1._0
         {
             Application.Exit();
         }
+
+        private void Start_Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

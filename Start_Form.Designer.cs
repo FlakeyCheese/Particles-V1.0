@@ -36,9 +36,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(253, 51);
+            this.button1.Location = new System.Drawing.Point(190, 41);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(56, 19);
             this.button1.TabIndex = 0;
             this.button1.Text = "start";
             this.button1.UseVisualStyleBackColor = true;
@@ -47,26 +48,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(92, 163);
+            this.label1.Location = new System.Drawing.Point(69, 132);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(391, 16);
+            this.label1.Size = new System.Drawing.Size(313, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "This is an ongoing project to explore particle effects in Win Forms";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 179);
+            this.label2.Location = new System.Drawing.Point(69, 145);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(450, 16);
+            this.label2.Size = new System.Drawing.Size(368, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Click the start button to open the sky. Click anywhere to create an explosion.";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(253, 265);
+            this.button2.Location = new System.Drawing.Point(190, 215);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(56, 19);
             this.button2.TabIndex = 2;
             this.button2.Text = "Exit";
             this.button2.UseVisualStyleBackColor = true;
@@ -74,15 +78,17 @@
             // 
             // Start_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 313);
+            this.ClientSize = new System.Drawing.Size(464, 254);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Start_Form";
             this.Text = "Start_Form";
+            this.Load += new System.EventHandler(this.Start_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
