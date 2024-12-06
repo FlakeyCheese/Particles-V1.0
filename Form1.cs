@@ -14,11 +14,12 @@ namespace Particles_V1._0
     public partial class Form1 : Form
         
     {
-        
+        public BlackHole myBlackHole;
         public List<Explosion> Explosions= new List<Explosion>();//a list to hold all the explosions
         int curX = 0;//somewhere to store the current location of the pointer
         int curY = 0;
-        BlackHole myBlackHole;
+        
+
         public Form1()
         {
             this.DoubleBuffered = true;//smooths the animation
@@ -56,6 +57,7 @@ namespace Particles_V1._0
             if (BlackHole.blackHoleCount!=0)
             {
                 SolidBrush bhBrush = new SolidBrush(Color.Red);
+                
                 e.Graphics.FillEllipse(bhBrush, myBlackHole.startx, myBlackHole.starty, myBlackHole.r, myBlackHole.r);
             }
              
