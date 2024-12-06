@@ -15,6 +15,9 @@ namespace Particles_V1._0
         
     {
         public BlackHole myBlackHole;
+
+       
+
         public List<Explosion> Explosions= new List<Explosion>();//a list to hold all the explosions
         int curX = 0;//somewhere to store the current location of the pointer
         int curY = 0;
@@ -54,11 +57,12 @@ namespace Particles_V1._0
                     }
                 }
             } 
-            if (BlackHole.blackHoleCount!=0)
+            if (myBlackHole is object)
             {
                 SolidBrush bhBrush = new SolidBrush(Color.Red);
                 
                 e.Graphics.FillEllipse(bhBrush, myBlackHole.startx, myBlackHole.starty, myBlackHole.r, myBlackHole.r);
+                bhBrush.Dispose();
             }
              
         }
@@ -91,6 +95,7 @@ namespace Particles_V1._0
             else { parts = 0; }
             label1.Text = Explosions.Count.ToString();
             label4.Text =(Explosions.Count*parts).ToString();
+            Invalidate();
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -106,7 +111,7 @@ namespace Particles_V1._0
                 if (BlackHole.blackHoleCount < 1)
                 {
                     //make a black hole
-                    BlackHole myBlackHole = new BlackHole(curX, curY);
+                    BlackHole myBlackHole = new BlackHole(curX, curY,this);
                 }
             }
         }

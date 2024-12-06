@@ -49,7 +49,7 @@ namespace Particles_V1._0
             }
             //redraw the active form (used this because it may try to draw on Form1 after it has closed)
             //still crashes here on exit on occassion
-            System.Windows.Forms.Form.ActiveForm.Invalidate();
+            _form1.Invalidate();
         }
 
     }
